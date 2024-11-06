@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from 'src/app/material.module';
+
+import { PlanningFilterDialogComponent } from './planning-filter-dialog/planning-filter-dialog.component';
 
 export interface productsData {
     id: number;
@@ -62,8 +65,18 @@ export interface productsData {
   ],
 })
 export class PlanningComponent {
-  constructor() {}
+  constructor(
+    private dialog: MatDialog
+  ) {}
 
   displayedColumns1: string[] = ['n_hours', 'date', 'hours', 'tons_pro', 'tons_rest', 'rain_mm'];
   dataSource1 = PRODUCT_DATA;
+
+  onOpenFiltersDialog(): void {
+    PlanningFilterDialogComponent.open(
+      this.dialog
+    ).afterClosed().subscribe(result => {
+      console.log('dialog closed: ', result);
+    });
+  }
 }
