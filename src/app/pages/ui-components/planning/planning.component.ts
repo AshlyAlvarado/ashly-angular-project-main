@@ -1,50 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from 'src/app/material.module';
-
-export interface productsData {
-    id: number;
-    imagePath: string;
-    uname: string;
-    budget: number;
-    priority: string;
-  }
-
-  const PRODUCT_DATA: productsData[] = [
-    {
-      id: 1,
-      imagePath: 'assets/images/products/dash-prd-1.jpg',
-      uname: 'iPhone 13 pro max-Pacific Blue-128GB storage',
-      budget: 180,
-      priority: 'confirmed',
-    },
-    {
-      id: 2,
-      imagePath: 'assets/images/products/dash-prd-2.jpg',
-      uname: 'Apple MacBook Pro 13 inch-M1-8/256GB-space',
-      budget: 90,
-      priority: 'cancelled',
-    },
-    {
-      id: 3,
-      imagePath: 'assets/images/products/dash-prd-3.jpg',
-      uname: 'PlayStation 5 DualSense Wireless Controller',
-      budget: 120,
-      priority: 'rejected',
-    },
-    {
-      id: 4,
-      imagePath: 'assets/images/products/dash-prd-4.jpg',
-      uname: 'Amazon Basics Mesh, Mid-Back, Swivel Office',
-      budget: 160,
-      priority: 'confirmed',
-    },
-  ];
+import { MaterialService } from 'src/app/services/material.service';
 
 @Component({
   selector: 'app-planning',
@@ -61,9 +23,15 @@ export interface productsData {
     MatButtonModule,
   ],
 })
-export class PlanningComponent {
-  constructor() {}
+export class PlanningComponent implements OnInit {
+  materials: any[] = [];
+  displayedColumns1: string[] = ['nombre', 'meta']; // Columnas a mostrar
 
-  displayedColumns1: string[] = ['n_hours', 'date', 'hours', 'tons_pro', 'tons_rest', 'rain_mm'];
-  dataSource1 = PRODUCT_DATA;
+  constructor(private materialService: MaterialService) {}
+
+  ngOnInit(): void {
+    this.materialService.getMaterials().subscribe((response) => {
+      this.materials = response.Data;
+    });
+  }
 }
