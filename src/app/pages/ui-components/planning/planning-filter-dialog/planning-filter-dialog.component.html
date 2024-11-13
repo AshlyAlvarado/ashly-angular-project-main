@@ -1,0 +1,101 @@
+<form (submit)="onSubmit()">
+  <mat-card class="cardWithShadow theme-card m-b-0">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Programacion por barco</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Tipo de operacion</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [(value)]="selectedOperationType">
+              @for(option of operationType; track option.value) {
+              <mat-option [value]="option.value">{{
+                option.viewValue
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [(value)]="selectedOperationType">
+              @for(option of operationType; track option.value) {
+              <mat-option [value]="option.value">{{
+                option.viewValue
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">
+            Nombre del barco
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="Nombre del barco" />
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">
+            Numero del viaje
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="Numero del viaje" />
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">
+            Fecha de inicio de operaciones
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="Fecha de inicio" />
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">
+            Hora de inicio de operaciones
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="Hora de inicio" />
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <!-- input -->
+          <mat-label class="f-w-600 m-b-8 d-block">
+            Ingrese las toneladas a operar
+          </mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="Toneladas a operar" />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="b-t-1">
+      <button
+        mat-flat-button
+        color="primary"
+        class="m-r-8"
+        type="submit"
+        mat-button
+      >
+        Submit
+      </button>
+      <button
+        mat-stroked-button
+        mat-dialog-close
+        color="warn"
+        type="button"
+        mat-button
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
