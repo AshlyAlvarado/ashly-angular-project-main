@@ -8,6 +8,7 @@ import { AppMenuComponent } from './menu/menu.component';
 import { PlanningComponent } from './planning/planning.component';
 import { AppTablesComponent } from './tables/tables.component';
 import { AppTooltipsComponent } from './tooltips/tooltips.component';
+import { InputFormComponent } from './planning/input-form/input-form.component';
 
 // ui
 export const UiComponentsRoutes: Routes = [
@@ -15,8 +16,12 @@ export const UiComponentsRoutes: Routes = [
     path: '',
     children: [
       {
-        path: 'planning',
+        path: 'materiales',
         component: PlanningComponent,
+      },
+      {
+        path: 'tiempo-operacion',
+        component: InputFormComponent,
       },
       {
         path: 'badge',

@@ -14,9 +14,14 @@ export const navItems: NavItem[] = [
     divider: true
   },
   {
-    displayName: 'Planificacion',
+    displayName: 'Materiales',
     iconName: 'solar:archive-minimalistic-line-duotone',
-    route: '/component/planning',
+    route: '/component/materiales',
+  },
+  {
+    displayName: 'Tiempo operacion',
+    iconName: 'solar:archive-minimalistic-line-duotone',
+    route: '/component/tiempo-operacion',
   },
   {
     displayName: 'Control de carga',
