@@ -1,62 +1,97 @@
-<form (ngSubmit)="onSubmit()">
-    <h1>Programación por barco</h1>
-    <img src="assets/Logo-Avanza.png" alt="Logo Avanza" id="imagenSuperiorDerecha">
-  
-    <label for="tipoOperacion">Tipo de Operación:</label>
-    <!-- (change)="onTipoOperacionChange($event)" borrado de la siguiente linea -->
-    <select name="tipoOperacion" id="tipoOperacion" >
-      <option value="">Selecciona una operación</option>
-      <option value="importacion">Importación</option>
-      <option value="exportacion">Exportación</option>
-    </select><br><br>
-  
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">programación por barco</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <form (ngSubmit)="onSubmit()">
+      <div class="row">
 
-    <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
-    <mat-form-field appearance="outline" class="w-100">
-        <mat-select [value]="selectedMaterial">
-            @for(option of materiales; track option.id) {
-                <mat-option [value]="option.id">{{
-                  option.nombre
+        <div class="col-lg-6">
+          <!-- (change)="onTipoOperacionChange($event)" borrado de la siguiente linea -->
+          <mat-label class="f-w-600 m-b-8 d-block">Tipo de operación</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [(value)]="formData.tipoOperacion">
+              @for(option of tiposOperacion; track option.tipo) {
+                <mat-option [value]="option.tipo">{{
+                  option.descripcion
                 }}</mat-option>
                 }
-        </mat-select>
-    </mat-form-field>
-<!--     
-    <select name="material" id="material" [disabled]="false">
-        <option value="">Selecciona un material</option>
-        <option *ngFor="let material of materiales" [value]="option.id">{{ material.nombre }}</option>
-      </select><br><br> -->
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-    <!-- (change)="onInputChange($event)" fue removido de la linea siguiente -->
-    
-    <!-- <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
-        <mat-form-field appearance="outline" class="w-100">
-        <mat-select [(value)]="selectedMaterial">
-            <mat-option *ngFor="let option of materiales" [value]="option.id">
-            {{ option.nombre }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field> -->
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+              <mat-select [value]="selectedMaterial">
+                  @for(option of materiales; track option.id) {
+                      <mat-option [value]="option.id">{{
+                        option.nombre
+                      }}</mat-option>
+                      }
+              </mat-select>
+          </mat-form-field>
+      </div>
+        <!--     
+          <select name="material" id="material" [disabled]="false">
+              <option value="">Selecciona un material</option>
+              <option *ngFor="let material of materiales" [value]="option.id">{{ material.nombre }}</option>
+            </select><br><br> -->
+
+          <!-- (change)="onInputChange($event)" fue removido de la linea siguiente -->
+          
+          <!-- <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+              <mat-select [(value)]="selectedMaterial">
+                  <mat-option *ngFor="let option of materiales" [value]="option.id">
+                  {{ option.nombre }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field> -->
+
+          <div class="col-lg-6">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Barco</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Nombre del barco" name="barco" id="barco"/>
+            </mat-form-field>
+          </div>
 
 
-  
-    <label for="barco">Ingrese nombre del barco:</label>
-    <!-- (input)="onInputChange($event)" removido de la siguiente linea -->
-    <input type="text" name="barco" id="barco" ><br><br>
-  
-    <label for="numViaje">Ingrese el número de viaje:</label>
-    <!-- (input)="onInputChange($event)" removido de la siguiente linea -->
-    <input type="text" name="numViaje" id="numViaje"><br><br>
-  
-    <label for="toneladasTotales">Ingrese las toneladas a operar:</label>
-    <input type="number" name="toneladasTotales" id="toneladasTotales" ><br><br>
-  
-    <label for="fechaArribo">Ingrese la fecha de inicio de operaciones:</label>
-    <input type="date" name="fechaArribo" id="fechaArribo"><br><br>
-  
-    <label for="horaArribo">Ingrese la hora de inicio de operaciones:</label>
-    <input type="time" name="horaArribo" id="horaArribo" ><br><br>
-  
-    <button type="submit">Mostrar programación estimada</button>
-  </form>
-  
+          <div class="col-lg-6">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Número de viaje</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Número de viaje" name="numViaje" id="numViaje"/>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Toneladas</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput placeholder="Toneladas a operar" name="toneladasTotales" id="toneladasTotales"/>
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-6">
+            <!-- input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Fecha inicio operaciones</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput [matDatepicker]="picker" [(ngModel)]="fecha" name="fechaArribo" id="fechaArribo">
+              <mat-hint>Formato gringo</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          
+
+          <label for="horaArribo">Ingrese la hora de inicio de operaciones:</label>
+          <input type="time" name="horaArribo" id="horaArribo" ><br><br>
+
+          <button type="submit">Mostrar programación estimada</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
