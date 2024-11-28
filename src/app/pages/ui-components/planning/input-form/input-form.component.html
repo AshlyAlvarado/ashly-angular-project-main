@@ -10,7 +10,7 @@
           <!-- (change)="onTipoOperacionChange($event)" borrado de la siguiente linea -->
           <mat-label class="f-w-600 m-b-8 d-block">Tipo de operación</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(value)]="formData.tipoOperacion">
+            <mat-select [(value)]="formData.tipoOperacion" placeholder="Selecciona el tipo de operación">
               @for(option of tiposOperacion; track option.tipo) {
                 <mat-option [value]="option.tipo">{{
                   option.descripcion
@@ -23,7 +23,7 @@
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-              <mat-select [value]="selectedMaterial">
+              <mat-select [(value)]="formData.selectedMaterial" placeholder="Selecciona el material">
                   @for(option of materiales; track option.id) {
                       <mat-option [value]="option.id">{{
                         option.nombre
@@ -32,82 +32,64 @@
               </mat-select>
           </mat-form-field>
       </div>
-        <!--     
-          <select name="material" id="material" [disabled]="false">
-              <option value="">Selecciona un material</option>
-              <option *ngFor="let material of materiales" [value]="option.id">{{ material.nombre }}</option>
-            </select><br><br> -->
 
-          <!-- (change)="onInputChange($event)" fue removido de la linea siguiente -->
-          
-          <!-- <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
-              <mat-form-field appearance="outline" class="w-100">
-              <mat-select [(value)]="selectedMaterial">
-                  <mat-option *ngFor="let option of materiales" [value]="option.id">
-                  {{ option.nombre }}
-                  </mat-option>
-              </mat-select>
-          </mat-form-field> -->
+      <div class="col-lg-6">
+        <!-- input -->
+        <mat-label class="f-w-600 m-b-8 d-block">Barco</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+          <input matInput [(ngModel)]="formData.barco" placeholder="Nombre del barco" name="barco" id="barco"/>
+        </mat-form-field>
+      </div>
 
-          <div class="col-lg-6">
-            <!-- input -->
-            <mat-label class="f-w-600 m-b-8 d-block">Barco</mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput placeholder="Nombre del barco" name="barco" id="barco"/>
-            </mat-form-field>
-          </div>
+      <div class="col-lg-6">
+        <!-- input -->
+        <mat-label class="f-w-600 m-b-8 d-block">Número de viaje</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+          <input matInput [(ngModel)]="formData.numViaje" placeholder="Número de viaje" name="numViaje" id="numViaje"/>
+        </mat-form-field>
+      </div>
 
+      <div class="col-lg-6">
+        <!-- input -->
+        <mat-label class="f-w-600 m-b-8 d-block">Toneladas</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+          <input matInput [(ngModel)]="formData.toneladasTotales" (ngModelChange)="convertToNumber($event)" placeholder="Toneladas a operar" name="toneladasTotales" id="toneladasTotales"/>
+        </mat-form-field>
+      </div>
 
-          <div class="col-lg-6">
-            <!-- input -->
-            <mat-label class="f-w-600 m-b-8 d-block">Número de viaje</mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput placeholder="Número de viaje" name="numViaje" id="numViaje"/>
-            </mat-form-field>
-          </div>
+      <div class="col-lg-3">
+        <!-- Datepicker input -->
+        <mat-label class="f-w-600 m-b-8 d-block">Fecha de inicio operaciones</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+          <input matInput 
+                [matDatepicker]="datepicker"
+                [(ngModel)]="formData.fecha"
+                placeholder="DD/MM/YYYY"
+                name="fechaArribo"
+                id="fechaArribo"
+                readonly>
+          <mat-datepicker #datepicker></mat-datepicker>
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker" />
+        </mat-form-field>
+      </div>
 
-          <div class="col-lg-6">
-            <!-- input -->
-            <mat-label class="f-w-600 m-b-8 d-block">Toneladas</mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput placeholder="Toneladas a operar" name="toneladasTotales" id="toneladasTotales"/>
-            </mat-form-field>
-          </div>
-
-          <div class="col-lg-3">
-            <!-- Datepicker input -->
-            <mat-label class="f-w-600 m-b-8 d-block">Fecha de inicio operaciones</mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput 
-                    [matDatepicker]="datepicker"
-                    [(ngModel)]="fecha"
-                    placeholder="DD/MM/YYYY"
-                    name="fechaArribo"
-                    id="fechaArribo"
-                    readonly>
-              <mat-datepicker #datepicker></mat-datepicker>
-              <mat-datepicker-toggle matIconSuffix [for]="datepicker" />
-            </mat-form-field>
-          </div>
-
-          <div class="col-lg-3">
-            <!-- Timepicker input -->
-            <mat-label class="f-w-600 m-b-8 d-block">Hora de inicio de operaciones</mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput
-                    [format]=24
-                    [ngxMatTimepicker]="timepicker"
-                    placeholder="HH:mm (24 hr)"
-                    [(ngModel)]="hora"
-                    name="horaArribo"
-                    id="horaArribo"
-                    [ngModelOptions]="{updateOn: 'blur'}"
-                    readonly>
-              <ngx-mat-timepicker #timepicker  ></ngx-mat-timepicker>
-              <ngx-mat-timepicker-toggle [for]="timepicker" matSuffix/>
-            </mat-form-field>
-          </div>
-
+      <div class="col-lg-3">
+        <!-- Timepicker input -->
+        <mat-label class="f-w-600 m-b-8 d-block">Hora de inicio de operaciones</mat-label>
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+          <input matInput
+                [format]=24
+                [ngxMatTimepicker]="timepicker"
+                placeholder="HH:mm (24 hr)"
+                [(ngModel)]="formData.hora"
+                name="horaArribo"
+                id="horaArribo"
+                [ngModelOptions]="{updateOn: 'blur'}"
+                readonly>
+          <ngx-mat-timepicker #timepicker  ></ngx-mat-timepicker>
+          <ngx-mat-timepicker-toggle [for]="timepicker" matSuffix/>
+        </mat-form-field>
+      </div>
           
       </div>
       <div class="m-t-12">

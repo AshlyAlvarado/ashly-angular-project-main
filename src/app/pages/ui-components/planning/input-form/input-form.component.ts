@@ -33,28 +33,24 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 })
 
 export class InputFormComponent implements OnInit {
-  fecha: moment.Moment | null = null; // O usa Date si no estás utilizando Moment.js
-  hora: string | undefined; // Almacena la hora seleccionada
-  
-  
-  
+    
   constructor(private materialService: MaterialService,
     private dateAdapter: DateAdapter<any>) {
     this.dateAdapter.setLocale('es-HN'); // Configura el locale español
   }
 
-  selectedMaterial: '';
   tiposOperacion: any[] = [
     {tipo:'import', descripcion:'Importación'},
     {tipo:'export', descripcion:'Exportación'}
   ]
   formData = {
     tipoOperacion: '',
+    selectedMaterial: 0,
     barco: '',
     numViaje: '',
-    toneladasTotales: '',
-    fechaArribo: '',
-    horaArribo: ''
+    toneladasTotales: null as number | null,  // Permite tanto null como number,
+    fecha: Date, // O usa Date si no estás utilizando Moment.js
+    hora: '' // Almacena la hora seleccionada
   };
 
   tipoOperacion = '';
@@ -75,6 +71,10 @@ export class InputFormComponent implements OnInit {
       console.log(moment().format('DD/MM/YYYY')); // Debería mostrar la fecha en el formato correcto
 
     });
+  }
+
+  convertToNumber(value: string) {
+    this.formData.toneladasTotales = parseFloat(value) || 0; // Convierte el valor o asigna 0 si no es un número válido
   }
 
   trackById(index: number, item: { id: number; nombre: string }): number {
