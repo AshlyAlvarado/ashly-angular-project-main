@@ -1,6 +1,6 @@
 <mat-card class="cardWithShadow theme-card">
   <mat-card-header>
-    <mat-card-title class="m-b-0">programación por barco</mat-card-title>
+    <mat-card-title class="m-b-0">Proyección por barco</mat-card-title>
   </mat-card-header>
   <mat-card-content class="b-t-1">
     <form (ngSubmit)="onSubmit()">
@@ -74,23 +74,29 @@
             </mat-form-field>
           </div>
 
-          <div class="col-lg-6">
+          <div class="col-lg-3">
             <!-- input -->
-            <mat-label class="f-w-600 m-b-8 d-block">Fecha inicio operaciones</mat-label>
+            <mat-label class="f-w-600 m-b-8 d-block">Fecha de inicio operaciones</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput [matDatepicker]="picker" [(ngModel)]="fecha" name="fechaArribo" id="fechaArribo">
-              <mat-hint>Formato gringo</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
+              <input readonly matInput [matDatepicker]="datepicker" [(ngModel)]="fecha" placeholder="MM/DD/YYYY" name="fechaArribo" id="fechaArribo">
+              <mat-datepicker #datepicker></mat-datepicker>
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker" />
+            </mat-form-field>
+          </div>
+
+          <div class="col-lg-3">
+            <mat-label class="f-w-600 m-b-8 d-block">Hora de inicio de operaciones</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput [format]=24 [ngxMatTimepicker]="timepicker" placeholder="HH:mm" [(ngModel)]="hora" name="horaArribo" id="horaArribo" [ngModelOptions]="{updateOn: 'blur'}" readonly >
+              <ngx-mat-timepicker #timepicker  ></ngx-mat-timepicker>
+              <ngx-mat-timepicker-toggle [for]="timepicker" matSuffix/>
             </mat-form-field>
           </div>
 
           
-
-          <label for="horaArribo">Ingrese la hora de inicio de operaciones:</label>
-          <input type="time" name="horaArribo" id="horaArribo" ><br><br>
-
-          <button type="submit">Mostrar programación estimada</button>
+      </div>
+      <div class="m-t-12">
+        <button type="submit" mat-flat-button color="primary" class="m-r-8">Programación estimada</button>
       </div>
     </form>
   </mat-card-content>

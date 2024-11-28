@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatHint } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MaterialService } from 'src/app/services/material.service';
 import * as moment from 'moment';
-import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 @Component({
   selector: 'app-input-form',
@@ -25,18 +25,19 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
     MatNativeDateModule, // Importa el módulo necesario para el adaptador
     MatInputModule,
     MatButtonModule,
+    NgxMatTimepickerModule
   ],
   templateUrl: './input-form.component.html',
   styleUrls: ['./input-form.component.scss'],
-  providers: [
-  ]
+  providers: [provideNativeDateAdapter()]
 })
 
 export class InputFormComponent implements OnInit {
-  fecha: moment.Moment | null = null;
+  fecha: Date;
+  hora: string | undefined; // Almacena la hora seleccionada
+  formatHour: number;
   constructor(private materialService: MaterialService) {
-    // Inicializa con un valor Moment si es necesario
-    this.fecha = moment();
+    this.formatHour = 24;
   }
 
   selectedMaterial: '';

@@ -4,13 +4,15 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { CUSTOM_DATE_FORMATS } from './customDateFormats';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 
 @NgModule({
   declarations: [],
   imports: [
     HttpClientModule,  // Agrega HttpClientModule aquí
-    MatMomentDateModule
+    MatMomentDateModule,
+    NgxMatTimepickerModule.setLocale('en-GB')
   ],
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter }, // Configura Moment como adaptador
