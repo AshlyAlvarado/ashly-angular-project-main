@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatFormFieldModule, MatHint } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,11 +33,14 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 })
 
 export class InputFormComponent implements OnInit {
-  fecha: Date;
+  fecha: moment.Moment | null = null; // O usa Date si no estás utilizando Moment.js
   hora: string | undefined; // Almacena la hora seleccionada
-  formatHour: number;
-  constructor(private materialService: MaterialService) {
-    this.formatHour = 24;
+  
+  
+  
+  constructor(private materialService: MaterialService,
+    private dateAdapter: DateAdapter<any>) {
+    this.dateAdapter.setLocale('es-HN'); // Configura el locale español
   }
 
   selectedMaterial: '';

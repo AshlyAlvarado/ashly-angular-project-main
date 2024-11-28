@@ -75,19 +75,34 @@
           </div>
 
           <div class="col-lg-3">
-            <!-- input -->
+            <!-- Datepicker input -->
             <mat-label class="f-w-600 m-b-8 d-block">Fecha de inicio operaciones</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input readonly matInput [matDatepicker]="datepicker" [(ngModel)]="fecha" placeholder="MM/DD/YYYY" name="fechaArribo" id="fechaArribo">
+              <input matInput 
+                    [matDatepicker]="datepicker"
+                    [(ngModel)]="fecha"
+                    placeholder="DD/MM/YYYY"
+                    name="fechaArribo"
+                    id="fechaArribo"
+                    readonly>
               <mat-datepicker #datepicker></mat-datepicker>
               <mat-datepicker-toggle matIconSuffix [for]="datepicker" />
             </mat-form-field>
           </div>
 
           <div class="col-lg-3">
+            <!-- Timepicker input -->
             <mat-label class="f-w-600 m-b-8 d-block">Hora de inicio de operaciones</mat-label>
             <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput [format]=24 [ngxMatTimepicker]="timepicker" placeholder="HH:mm" [(ngModel)]="hora" name="horaArribo" id="horaArribo" [ngModelOptions]="{updateOn: 'blur'}" readonly >
+              <input matInput
+                    [format]=24
+                    [ngxMatTimepicker]="timepicker"
+                    placeholder="HH:mm (24 hr)"
+                    [(ngModel)]="hora"
+                    name="horaArribo"
+                    id="horaArribo"
+                    [ngModelOptions]="{updateOn: 'blur'}"
+                    readonly>
               <ngx-mat-timepicker #timepicker  ></ngx-mat-timepicker>
               <ngx-mat-timepicker-toggle [for]="timepicker" matSuffix/>
             </mat-form-field>
