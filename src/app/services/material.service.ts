@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MaterialService {
-  private apiUrl = 'http://localhost:4000/api/material';
+  private baseUrl = 'http://localhost:4000/api';
 
   constructor(private http: HttpClient) { }
 
   getMaterials(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    const endpoint = `${this.baseUrl}/material`;
+    return this.http.get<any>(endpoint);
   }
 }
