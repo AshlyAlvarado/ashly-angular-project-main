@@ -1,9 +1,48 @@
-<app-weather-list
-  [tipoOperacion]="'importacion'"
-  [material]="'Carbon'"
-  [clima]="{ temperatura: 30, lluvia: false }"
-  [toneladasTotales]="1000"
-  [metasPorMaterial]="{}"
-  [toneladasRestantes]="200"
-  [horaActual]="'15:00'"
-></app-weather-list>
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <mat-card-title>Proyección</mat-card-title>
+
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" class="w-100">
+        <!-- Número de Horas -->
+        <ng-container matColumnDef="numeroHoras">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14 p-l-0"> Número de Horas </th>
+          <td mat-cell *matCellDef="let element" class="p-l-0"> {{ element.numeroHoras }} </td>
+        </ng-container>
+
+        <!-- Fecha -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Fecha </th>
+          <td mat-cell *matCellDef="let element"> {{ element.fecha }} </td>
+        </ng-container>
+
+        <!-- Hora -->
+        <ng-container matColumnDef="hora">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Hora </th>
+          <td mat-cell *matCellDef="let element"> {{ element.hora }} </td>
+        </ng-container>
+
+        <!-- Toneladas Proyectadas -->
+        <ng-container matColumnDef="toneladasProyectadas">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Toneladas Proyectadas </th>
+          <td mat-cell *matCellDef="let element"> {{ element.toneladasProyectadas }} </td>
+        </ng-container>
+
+        <!-- Toneladas Restantes -->
+        <ng-container matColumnDef="toneladasRestantes">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Toneladas Restantes </th>
+          <td mat-cell *matCellDef="let element"> {{ element.toneladasRestantes }} </td>
+        </ng-container>
+
+        <!-- Lluvia -->
+        <ng-container matColumnDef="lluvia">
+          <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Lluvia (mm) </th>
+          <td mat-cell *matCellDef="let element"> {{ element.lluvia }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

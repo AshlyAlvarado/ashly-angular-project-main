@@ -19,9 +19,14 @@ export const navItems: NavItem[] = [
     route: '/component/materiales',
   },
   {
-    displayName: 'Tiempo operacion',
+    displayName: 'Proyección',
     iconName: 'solar:archive-minimalistic-line-duotone',
-    route: '/component/tiempo-operacion',
+    route: '/component/generar-proyeccion',
+  },
+  {
+    displayName: 'Tabla Proyección [Temporal]',
+    iconName: 'solar:archive-minimalistic-line-duotone',
+    route: '/component/proyeccion',
   },
   {
     displayName: 'Control de carga',
