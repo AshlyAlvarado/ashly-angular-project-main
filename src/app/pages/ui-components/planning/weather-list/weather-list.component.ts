@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { ProyeccionService } from 'src/app/services/proyeccion.service';
 
 @Component({
   selector: 'app-weather-list',
@@ -14,13 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 })
 
 export class WeatherListComponent implements OnInit {
+  horasParoPorLluvia: number=0;
   // @Input() programacionData: any;
   // @Input() weatherData: any;
   @Input() parametros: any; // Aquí recibes los parámetros ingresados por el usuario
-  displayedColumns: string[] = ['numeroHoras', 'fecha', 'hora', 'toneladasProyectadas', 'toneladasRestantes', 'lluvia'];
+  displayedColumns: string[] = ['numeroHoras', 'fecha', 'hora', 'toneladasHora', 'toneladasRestantes', 'clima'];
   dataSource: any[] = [];
 
-  constructor() { }
+  constructor(private proyeccionService: ProyeccionService ) { }
 
   ngOnInit(): void {
     this.cargarDatos();
@@ -28,12 +30,24 @@ export class WeatherListComponent implements OnInit {
 
   cargarDatos(): void {
     // Simulación del llamado al backend (reemplaza esto con tu servicio real)
-    const datos = [
-      { fecha: '2024-12-01', hora: '14:30', toneladasProyectadas: 25.5, toneladasRestantes: 10.25, lluvia: 5.1 },
-      { fecha: '2024-12-02', hora: '15:45', toneladasProyectadas: 20.0, toneladasRestantes: 8.75, lluvia: 3.2 }
-    ];
+    const payload = {
+      tipoOperacion: 'importacion',
+      material: 'Carbon',
+      toneladasTotales: 15000,
+      fechaArribo: '2024-12-01',
+      horaArribo: '14:45'
+    };
 
-    this.dataSource = datos.map((item, index) => ({
+    this.proyeccionService.postProyeccionBarco(payload).subscribe({
+      next: (response) => {
+        console.log(response); // Verifica la respuesta en consola
+
+
+
+
+
+/*
+  this.dataSource = datos.map((item, index) => ({
       numeroHoras: index + 1,
       fecha: new Date(item.fecha).toLocaleDateString('es-ES'),
       hora: item.hora,
@@ -41,6 +55,23 @@ export class WeatherListComponent implements OnInit {
       toneladasRestantes: item.toneladasRestantes.toFixed(2),
       lluvia: item.lluvia.toFixed(2),
     }));
+*/
+
+
+        this.dataSource = response.data.resultados.map((item: any, index: number) => ({
+          numeroHoras: index + 1,
+          fecha: new Date (item.fecha).toLocaleDateString('es-HN'),
+          hora: new Date (item.fecha).toLocaleTimeString('en-GB'),
+          toneladasHora: item.toneladasHora.toFixed(2),
+          toneladasRestantes: item.toneladasRestantes.toFixed(2),
+          clima: item.clima.toFixed(2),
+        }));
+        this.horasParoPorLluvia = response.data.horasParoPorLluvia;
+      },
+      error: (err) => {
+        console.error('Error al consumir el API:', err);
+      }
+    });
   }
 
 }

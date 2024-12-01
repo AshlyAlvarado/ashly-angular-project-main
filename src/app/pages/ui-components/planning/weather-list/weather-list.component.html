@@ -23,9 +23,9 @@
         </ng-container>
 
         <!-- Toneladas Proyectadas -->
-        <ng-container matColumnDef="toneladasProyectadas">
+        <ng-container matColumnDef="toneladasHora">
           <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Toneladas Proyectadas </th>
-          <td mat-cell *matCellDef="let element"> {{ element.toneladasProyectadas }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.toneladasHora }} </td>
         </ng-container>
 
         <!-- Toneladas Restantes -->
@@ -35,9 +35,9 @@
         </ng-container>
 
         <!-- Lluvia -->
-        <ng-container matColumnDef="lluvia">
+        <ng-container matColumnDef="clima">
           <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Lluvia (mm) </th>
-          <td mat-cell *matCellDef="let element"> {{ element.lluvia }} </td>
+          <td mat-cell *matCellDef="let element"> {{ element.clima }} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
