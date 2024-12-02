@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -10,7 +10,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MaterialService } from 'src/app/services/material.service';
 import * as moment from 'moment';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
 @Component({
   selector: 'app-input-form',
   standalone: true,
@@ -33,6 +32,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 })
 
 export class InputFormComponent implements OnInit {
+
+  @Output() formSubmitted = new EventEmitter<any>();
     
   constructor(private materialService: MaterialService,
     private dateAdapter: DateAdapter<any>) {
@@ -40,27 +41,22 @@ export class InputFormComponent implements OnInit {
   }
 
   tiposOperacion: any[] = [
-    {tipo:'import', descripcion:'Importación'},
-    {tipo:'export', descripcion:'Exportación'}
+    {tipo:'importacion', descripcion:'Importación'},
+    {tipo:'exportacion', descripcion:'Exportación'}
   ]
   formData = {
     tipoOperacion: '',
-    selectedMaterial: 0,
+    material: '',
     barco: '',
     numViaje: '',
     toneladasTotales: null as number | null,  // Permite tanto null como number,
-    fecha: Date, // O usa Date si no estás utilizando Moment.js
-    hora: '' // Almacena la hora seleccionada
+    fechaDt: Date, 
+    fechaArribo: '', // O usa Date si no estás utilizando Moment.js
+    horaArribo: '' // Almacena la hora seleccionada
   };
 
   tipoOperacion = '';
   materiales: any[] = [];
-
-  materialesPorOperacion: Record<string, string[]> = {
-    importacion: ['Carbon', 'Petcoke', 'Fertilizante', 'Sal', 'Fluorita', 'otro'],
-    exportacion: ['Concentrado de Plomo', 'Concentrado de Zinc', 'Agregados carga directa desde (Agrecasa)', 'Agregados carga directa desde (Chiquita)', 'Agregados carga directa desde (Puntos de acopio)', 'otro']
-  };
-
   
 
   ngOnInit(): void {
@@ -92,8 +88,14 @@ export class InputFormComponent implements OnInit {
   //   const { name, value } = event.target;
   //   this.formData[name as keyof typeof this.formData] = value;
   // }
+  enviarDatos(): void {
+    // Emitir los datos al componente padre
+    this.formData.fechaArribo = moment(this.formData.fechaDt.toString()).format('YYYY-MM-DD');
+    this.formSubmitted.emit(this.formData);
+  }
 
   onSubmit() {
     console.log('Formulario enviado:', this.formData);
+    this.enviarDatos();
   }
 }
