@@ -1,0 +1,68 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+      <mat-card-title>Control de carga</mat-card-title>
+  
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" class="w-100">
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Fecha </th>
+                <td mat-cell *matCellDef="let element"> {{ element.fecha }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="hora">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Hora </th>
+                <td mat-cell *matCellDef="let element"> {{ element.hora }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="promedioPorCamion">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Promedio por camión </th>
+                <td mat-cell *matCellDef="let element"> {{ element.promedioPorCamion }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="camionesIngresados">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Camiones ingresados </th>
+                <td mat-cell *matCellDef="let element"> {{ element.camionesIngresados }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="camionesPendientes">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Camiones pendientes </th>
+                <td mat-cell *matCellDef="let element"> {{ element.camionesPendientes }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="camionesEnPredio">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Camiones en predio </th>
+                <td mat-cell *matCellDef="let element"> {{ element.camionesEnPredio }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="meta">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Meta </th>
+                <td mat-cell *matCellDef="let element"> {{ element.meta }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="toneladasCargadas">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Toneladas cargadas </th>
+                <td mat-cell *matCellDef="let element"> {{ element.toneladasCargadas }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="diferencia">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Diferencia </th>
+                <td mat-cell *matCellDef="let element"> {{ element.diferencia }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="cumplimientoMeta">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Cumplimiento de meta </th>
+                <td mat-cell *matCellDef="let element"> {{ element.cumplimientoMeta }} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="justificacion">
+                <th mat-header-cell *matHeaderCellDef class="f-w-600 mat-subtitle-1 f-s-14"> Justificación </th>
+                <td mat-cell *matCellDef="let element"> {{ element.justificacion }} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+        </table>
+      </div>
+    </mat-card-content>
+</mat-card>

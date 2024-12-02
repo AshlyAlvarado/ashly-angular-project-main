@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import * as moment from 'moment';
 import { ProyeccionService } from 'src/app/services/proyeccion.service';
 
 @Component({
@@ -57,7 +58,7 @@ export class WeatherListComponent implements OnChanges {
         this.dataSource = response.data.resultados.map((item: any, index: number) => ({
           numeroHoras: index + 1,
           fecha: new Date (item.fecha).toLocaleDateString('es-HN'),
-          hora: new Date (item.fecha).toLocaleTimeString('en-GB'),
+          hora: moment(item.fecha).format("HH:mm"),
           toneladasHora: item.toneladasHora.toFixed(2),
           toneladasRestantes: item.toneladasRestantes.toFixed(2),
           clima: item.clima.toFixed(2),
