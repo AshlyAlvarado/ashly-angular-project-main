@@ -27,10 +27,10 @@ export class PlanningComponent implements OnInit {
   materials: any[] = [];
   displayedColumns1: string[] = ['nombre', 'meta']; // Columnas a mostrar
 
-  constructor(private materialService: MaterialService) {}
+  constructor(private _materialService: MaterialService) {}
 
   ngOnInit(): void {
-    this.materialService.getMaterials().subscribe((response) => {
+    this._materialService.getMaterials().subscribe((response) => {
       this.materials = response.Data;
     });
   }

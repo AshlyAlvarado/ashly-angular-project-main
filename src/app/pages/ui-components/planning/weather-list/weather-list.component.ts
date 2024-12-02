@@ -42,22 +42,6 @@ export class WeatherListComponent implements OnInit {
       next: (response) => {
         console.log(response); // Verifica la respuesta en consola
 
-
-
-
-
-/*
-  this.dataSource = datos.map((item, index) => ({
-      numeroHoras: index + 1,
-      fecha: new Date(item.fecha).toLocaleDateString('es-ES'),
-      hora: item.hora,
-      toneladasProyectadas: item.toneladasProyectadas.toFixed(2),
-      toneladasRestantes: item.toneladasRestantes.toFixed(2),
-      lluvia: item.lluvia.toFixed(2),
-    }));
-*/
-
-
         this.dataSource = response.data.resultados.map((item: any, index: number) => ({
           numeroHoras: index + 1,
           fecha: new Date (item.fecha).toLocaleDateString('es-HN'),

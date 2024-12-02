@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MaterialService } from 'src/app/services/material.service';
 import * as moment from 'moment';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-input-form',
@@ -35,7 +36,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 export class InputFormComponent implements OnInit {
     
   constructor(private materialService: MaterialService,
-    private dateAdapter: DateAdapter<any>) {
+    private dateAdapter: DateAdapter<any>,
+    private _router: Router) {
     this.dateAdapter.setLocale('es-HN'); // Configura el locale español
   }
 
@@ -95,5 +97,6 @@ export class InputFormComponent implements OnInit {
 
   onSubmit() {
     console.log('Formulario enviado:', this.formData);
+    this._router.navigate(['proyeccion']);
   }
 }
