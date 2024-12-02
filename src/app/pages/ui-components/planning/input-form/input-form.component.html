@@ -23,9 +23,9 @@
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Material</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-              <mat-select [(value)]="formData.selectedMaterial" placeholder="Selecciona el material">
+              <mat-select [(value)]="formData.material" placeholder="Selecciona el material">
                   @for(option of materiales; track option.id) {
-                      <mat-option [value]="option.id">{{
+                      <mat-option [value]="option.nombre">{{
                         option.nombre
                       }}</mat-option>
                       }
@@ -63,7 +63,7 @@
         <mat-form-field appearance="outline" class="w-100" color="primary">
           <input matInput 
                 [matDatepicker]="datepicker"
-                [(ngModel)]="formData.fecha"
+                [(ngModel)]="formData.fechaDt"
                 placeholder="DD/MM/YYYY"
                 name="fechaArribo"
                 id="fechaArribo"
@@ -81,7 +81,7 @@
                 [format]=24
                 [ngxMatTimepicker]="timepicker"
                 placeholder="HH:mm (24 hr)"
-                [(ngModel)]="formData.hora"
+                [(ngModel)]="formData.horaArribo"
                 name="horaArribo"
                 id="horaArribo"
                 [ngModelOptions]="{updateOn: 'blur'}"

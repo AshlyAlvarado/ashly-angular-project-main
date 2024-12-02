@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { ProyeccionService } from 'src/app/services/proyeccion.service';
@@ -14,29 +14,41 @@ import { ProyeccionService } from 'src/app/services/proyeccion.service';
   styleUrls: ['./weather-list.component.scss'],
 })
 
-export class WeatherListComponent implements OnInit {
-  horasParoPorLluvia: number=0;
-  // @Input() programacionData: any;
-  // @Input() weatherData: any;
+export class WeatherListComponent implements OnChanges {
   @Input() parametros: any; // Aquí recibes los parámetros ingresados por el usuario
+  
+  horasParoPorLluvia: number = 0;
   displayedColumns: string[] = ['numeroHoras', 'fecha', 'hora', 'toneladasHora', 'toneladasRestantes', 'clima'];
   dataSource: any[] = [];
 
   constructor(private proyeccionService: ProyeccionService ) { }
 
-  ngOnInit(): void {
-    this.cargarDatos();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['parametros']) {
+      console.log('Datos actualizados:', this.parametros); // Aquí deberías ver los datos actualizados.
+      if (this.parametros) {
+        this.cargarDatos(this.parametros);
+        }
+    }
   }
 
-  cargarDatos(): void {
+  // ngOnInit(): void {
+  //   console.log('Input data:', this.parametros);
+  //   debugger
+  //   if (this.parametros) {
+  //     this.cargarDatos(this.parametros);
+  //   }
+  // }
+
+  cargarDatos(payload: any): void {
     // Simulación del llamado al backend (reemplaza esto con tu servicio real)
-    const payload = {
-      tipoOperacion: 'importacion',
-      material: 'Carbon',
-      toneladasTotales: 15000,
-      fechaArribo: '2024-12-01',
-      horaArribo: '14:45'
-    };
+    // const payload = {
+    //   tipoOperacion: 'importacion',
+    //   material: 'Carbon',
+    //   toneladasTotales: 15000,
+    //   fechaArribo: '2024-12-01',
+    //   horaArribo: '14:45'
+    // };
 
     this.proyeccionService.postProyeccionBarco(payload).subscribe({
       next: (response) => {

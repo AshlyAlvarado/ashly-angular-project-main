@@ -21,11 +21,6 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Proyección',
     iconName: 'solar:archive-minimalistic-line-duotone',
-    route: '/component/generar-proyeccion',
-  },
-  {
-    displayName: 'Tabla Proyección [Temporal]',
-    iconName: 'solar:archive-minimalistic-line-duotone',
     route: '/component/proyeccion',
   },
   {

@@ -10,6 +10,7 @@ import { AppTablesComponent } from './tables/tables.component';
 import { AppTooltipsComponent } from './tooltips/tooltips.component';
 import { InputFormComponent } from './planning/input-form/input-form.component';
 import { WeatherListComponent } from './planning/weather-list/weather-list.component';
+import { ProyeccionComponent } from './planning/proyeccion/proyeccion.component';
 
 // ui
 export const UiComponentsRoutes: Routes = [
@@ -21,12 +22,8 @@ export const UiComponentsRoutes: Routes = [
         component: PlanningComponent,
       },
       {
-        path: 'generar-proyeccion',
-        component: InputFormComponent,
-      },
-      {
         path: 'proyeccion',
-        component: WeatherListComponent,
+        component: ProyeccionComponent,
       },
       {
         path: 'badge',
