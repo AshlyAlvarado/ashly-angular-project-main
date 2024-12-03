@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +10,7 @@ import * as moment from 'moment';
   selector: 'app-control-carga',
   standalone: true,
   imports: [
+    CommonModule,
     MatCardModule,
     MatTableModule,
     MatInputModule,
