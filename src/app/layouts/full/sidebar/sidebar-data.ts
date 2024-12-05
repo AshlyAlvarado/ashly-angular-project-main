@@ -29,6 +29,11 @@ export const navItems: NavItem[] = [
     route: '/component/control-carga',
   },
   {
+    displayName: 'Form control de carga',
+    iconName: 'solar:archive-minimalistic-line-duotone',
+    route: '/component/FormControlCargaComponent',
+  },
+  {
     displayName: 'Datos de viaje',
     iconName: 'solar:archive-minimalistic-line-duotone',
     route: '/component/datos-viaje',

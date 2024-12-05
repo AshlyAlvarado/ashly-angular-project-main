@@ -12,6 +12,7 @@ import { InputFormComponent } from './planning/input-form/input-form.component';
 import { WeatherListComponent } from './planning/weather-list/weather-list.component';
 import { ProyeccionComponent } from './planning/proyeccion/proyeccion.component';
 import { ControlCargaComponent } from './planning/control-carga/control-carga.component';
+import { FormControlCargaComponent } from './planning/form-control-carga/form-control-carga.component';
 
 // ui
 export const UiComponentsRoutes: Routes = [
@@ -37,6 +38,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'chips',
         component: AppChipsComponent,
+      },
+      {
+        path: 'FormControlCargaComponent',
+        component: FormControlCargaComponent,
       },
       {
         path: 'lists',

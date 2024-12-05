@@ -1,0 +1,69 @@
+<mat-card class="cardWithShadow theme-card">
+    <mat-card-header>
+      <mat-card-title class="m-b-0">Formulario de Operación</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="b-t-1">
+      <form (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-lg-6">
+            <!-- Combo Box para Barco a operar -->
+            <mat-label class="f-w-600 m-b-8 d-block">Barco a operar</mat-label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select [(ngModel)]="formData.barco" name="barco" placeholder="Selecciona el barco">
+                <mat-option *ngFor="let barco of barcos" [value]="barco">{{ barco }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-lg-6">
+            <!-- Combo Box para Número de viaje -->
+            <mat-label class="f-w-600 m-b-8 d-block">Número de viaje</mat-label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select [(ngModel)]="formData.numeroViaje" name="numeroViaje" placeholder="Selecciona el número de viaje">
+                <mat-option *ngFor="let viaje of viajes" [value]="viaje">{{ viaje }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-lg-6">
+            <!-- Datepicker input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Fecha de inicio operaciones</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput 
+                    [matDatepicker]="datepicker"
+                    [(ngModel)]="formData.fechaDt"
+                    placeholder="DD/MM/YYYY"
+                    name="fechaInicio"
+                    id="fechaInicio"
+                    readonly>
+              <mat-datepicker #datepicker></mat-datepicker>
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            </mat-form-field>
+          </div>
+  
+          <div class="col-lg-6">
+            <!-- Timepicker input -->
+            <mat-label class="f-w-600 m-b-8 d-block">Hora de inicio de operaciones</mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput
+                    [format]=24
+                    [ngxMatTimepicker]="timepicker"
+                    placeholder="HH:mm (24 hr)"
+                    [(ngModel)]="formData.horaInicio"
+                    name="horaInicio"
+                    id="horaInicio"
+                    [ngModelOptions]="{updateOn: 'blur'}"
+                    readonly>
+              <ngx-mat-timepicker #timepicker></ngx-mat-timepicker>
+              <ngx-mat-timepicker-toggle [for]="timepicker" matSuffix></ngx-mat-timepicker-toggle>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="m-t-12">
+          <button type="submit" mat-flat-button color="primary" class="m-r-8">Guardar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

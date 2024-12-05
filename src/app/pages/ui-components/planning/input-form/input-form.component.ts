@@ -55,6 +55,7 @@ export class InputFormComponent implements OnInit {
     horaArribo: '' // Almacena la hora seleccionada
   };
 
+
   tipoOperacion = '';
   materiales: any[] = [];
   
@@ -68,6 +69,7 @@ export class InputFormComponent implements OnInit {
 
     });
   }
+
 
   convertToNumber(value: string) {
     this.formData.toneladasTotales = parseFloat(value) || 0; // Convierte el valor o asigna 0 si no es un número válido
